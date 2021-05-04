@@ -1,0 +1,22 @@
+Assembly	closed_gaps
+# contigs (>= 0 bp)	261294
+# contigs (>= 1000 bp)	9816
+# contigs (>= 5000 bp)	1175
+# contigs (>= 10000 bp)	84
+# contigs (>= 25000 bp)	2
+# contigs (>= 50000 bp)	0
+Total length (>= 0 bp)	82446592
+Total length (>= 1000 bp)	22595789
+Total length (>= 5000 bp)	8585585
+Total length (>= 10000 bp)	1037563
+Total length (>= 25000 bp)	52347
+Total length (>= 50000 bp)	0
+# contigs	33231
+Largest contig	27092
+Total length	39404370
+GC (%)	40.58
+N50	1147
+N75	780
+L50	7109
+L75	17777
+# N's per 100 kbp	29186.39

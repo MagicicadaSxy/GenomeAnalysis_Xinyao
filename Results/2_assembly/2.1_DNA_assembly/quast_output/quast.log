@@ -1,0 +1,62 @@
+/sw/bioinfo/quast/4.5.4/rackham/bin/quast.py -o quast_output closed_gaps.fasta
+
+Version: 4.5.4
+
+System information:
+  OS: Linux-3.10.0-1160.21.1.el7.x86_64-x86_64-with-centos-7.9.2009-Core (linux_64)
+  Python version: 2.7.6
+  CPUs number: 40
+
+Started: 2021-05-04 10:02:52
+
+Logging to /domus/h1/magici/GA/2_assembly/2.1_DNA_assembly/quast_output/quast.log
+NOTICE: Output directory already exists. Existing Nucmer alignments can be used
+NOTICE: Maximum number of threads is set to 10 (use --threads option to set it manually)
+
+CWD: /domus/h1/magici/GA/2_assembly/2.1_DNA_assembly
+Main parameters: 
+  Threads: 10, minimum contig length: 500, ambiguity: one, threshold for extensive misassembly size: 1000
+
+Contigs:
+  Pre-processing...
+  closed_gaps.fasta ==> closed_gaps
+
+2021-05-04 10:03:00
+Running Basic statistics processor...
+  Contig files: 
+    closed_gaps
+  Calculating N50 and L50...
+    closed_gaps, N50 = 1147, L50 = 7109, Total length = 39404370, GC % = 40.58, # N's per 100 kbp =  29186.39
+  Drawing Nx plot...
+    saved to /domus/h1/magici/GA/2_assembly/2.1_DNA_assembly/quast_output/basic_stats/Nx_plot.pdf
+  Drawing cumulative plot...
+    saved to /domus/h1/magici/GA/2_assembly/2.1_DNA_assembly/quast_output/basic_stats/cumulative_plot.pdf
+  Drawing GC content plot...
+    saved to /domus/h1/magici/GA/2_assembly/2.1_DNA_assembly/quast_output/basic_stats/GC_content_plot.pdf
+  Drawing closed_gaps GC content plot...
+    saved to /domus/h1/magici/GA/2_assembly/2.1_DNA_assembly/quast_output/basic_stats/closed_gaps_GC_content_plot.pdf
+Done.
+
+NOTICE: Genes are not predicted by default. Use --gene-finding option to enable it.
+
+2021-05-04 10:03:05
+Creating large visual summaries...
+This may take a while: press Ctrl-C to skip this step..
+  1 of 2: Creating Icarus viewers...
+  2 of 2: Creating PDF with all tables and plots...
+Done
+
+2021-05-04 10:03:07
+RESULTS:
+  Text versions of total report are saved to /domus/h1/magici/GA/2_assembly/2.1_DNA_assembly/quast_output/report.txt, report.tsv, and report.tex
+  Text versions of transposed total report are saved to /domus/h1/magici/GA/2_assembly/2.1_DNA_assembly/quast_output/transposed_report.txt, transposed_report.tsv, and transposed_report.tex
+  HTML version (interactive tables and plots) saved to /domus/h1/magici/GA/2_assembly/2.1_DNA_assembly/quast_output/report.html
+  PDF version (tables and plots) is saved to /domus/h1/magici/GA/2_assembly/2.1_DNA_assembly/quast_output/report.pdf
+  Icarus (contig browser) is saved to /domus/h1/magici/GA/2_assembly/2.1_DNA_assembly/quast_output/icarus.html
+  Log saved to /domus/h1/magici/GA/2_assembly/2.1_DNA_assembly/quast_output/quast.log
+
+Finished: 2021-05-04 10:03:07
+Elapsed time: 0:00:15.493633
+NOTICEs: 3; WARNINGs: 0; non-fatal ERRORs: 0
+
+Thank you for using QUAST!
