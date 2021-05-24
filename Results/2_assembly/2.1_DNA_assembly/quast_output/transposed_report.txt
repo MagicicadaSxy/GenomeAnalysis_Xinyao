@@ -1,5 +1,0 @@
-All statistics are based on contigs of size >= 500 bp, unless otherwise noted (e.g., "# contigs (>= 0 bp)" and "Total length (>= 0 bp)" include all contigs).
-Suggestion: assembly closed_gaps contains continuous fragments of N's of length >= 10 bp. You may consider rerunning QUAST using --scaffolds (-s) option!
-
-Assembly     # contigs (>= 0 bp)  # contigs (>= 1000 bp)  # contigs (>= 5000 bp)  # contigs (>= 10000 bp)  # contigs (>= 25000 bp)  # contigs (>= 50000 bp)  Total length (>= 0 bp)  Total length (>= 1000 bp)  Total length (>= 5000 bp)  Total length (>= 10000 bp)  Total length (>= 25000 bp)  Total length (>= 50000 bp)  # contigs  Largest contig  Total length  GC (%)  N50   N75  L50   L75    # N's per 100 kbp
-closed_gaps  261294               9816                    1175                    84                       2                        0                        82446592                22595789                   8585585                    1037563                     52347                       0                           33231      27092           39404370      40.58   1147  780  7109  17777  29186.39         
