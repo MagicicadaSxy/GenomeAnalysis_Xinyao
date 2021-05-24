@@ -39,9 +39,9 @@ resLFC_17_15 <- lfcShrink(dds, coef="time_cs17_vs_cs15", type="apeglm")
 resLFC_17_15
 
 plotMA(res)
-plotMA(resLFC_H_F)
-plotMA(resLFC_16_15)
-plotMA(resLFC_17_15)
+plotMA(resLFC_H_F,main="hindlimb vs forlimb")
+plotMA(resLFC_16_15,main="cs15 vs cs16")
+plotMA(resLFC_17_15,main="cs15 vs cs17")
 
 
 #plotCounts(dds, gene=which.min(res$padj), intgroup="type")
@@ -66,8 +66,11 @@ pheatmap(sampleDistMatrix,
          clustering_distance_cols=sampleDists,
          col=colors)
 
+name <- filter(gene_name,ID== res@rownames[which.min(res$padj)])[,2] 
+plotCounts(dds, gene=which.min(res$padj), intgroup="type",main = name)
+plotCounts(dds, gene=which.min(res$padj), intgroup="time",main = name)
 
-
+plotPCA(rld, intgroup=c("time", "type"))
 
 library(rtracklayer) 
 
