@@ -5,6 +5,8 @@ library(pheatmap)
 library(dplyr)
 library(RColorBrewer)
 library(ggplot2)
+library(rtracklayer) 
+
 
 f_cs15 <- read.table("htseq_count_forlimb_cs15.bam.txt")[1:43,]
 f_cs16 <- read.table("htseq_count_forlimb_cs16.bam.txt")[1:43,]
@@ -16,6 +18,13 @@ h_cs17 <- read.table("htseq_count_hindlimb_cs17.bam.txt")[1:43,]
 data <- cbind.data.frame(f_cs15$V2,f_cs16$V2,f_cs17$V2,h_cs15$V2,h_cs16$V2,h_cs17$V2)
 colnames(data) <- c("f_cs15","f_cs16","f_cs17","h_cs15","h_cs16","h_cs17")
 rownames(data) <- f_cs15$V1
+
+gene_name <- import("D:\\ubuntu\\rootfs\\root\\GenomeAnalysis_Xinyao\\GA\\3_annotation\\3.4_functional_annotation\\sel3.gff") %>%
+  as.data.frame() %>%
+  filter(.,ID %in% rownames(data)) %>%
+  .[,c("ID","Name")]
+
+rownames(data) <- gene_name$Name
 
 type <- factor(c(rep("forlimb", 3), rep("hindlimb", 3)))
 time <- factor(c("cs15","cs16","cs17","cs15","cs16","cs17"))
@@ -43,15 +52,11 @@ plotMA(resLFC_H_F,main="hindlimb vs forlimb")
 plotMA(resLFC_16_15,main="cs15 vs cs16")
 plotMA(resLFC_17_15,main="cs15 vs cs17")
 
-
-#plotCounts(dds, gene=which.min(res$padj), intgroup="type")
-
-
 rld <- rlog(dds, blind=FALSE)
 select <- order(rowMeans(counts(dds,normalized=TRUE)),
                 decreasing=TRUE)
 df <- as.data.frame(colData(dds)[,c("time","type")])
-pheatmap(assay(rld)[select,], cluster_rows=FALSE, show_rownames=FALSE,
+pheatmap(assay(rld)[select,], cluster_rows=FALSE, show_rownames=T,
          cluster_cols=FALSE, annotation_col=df)
 
 
@@ -66,22 +71,16 @@ pheatmap(sampleDistMatrix,
          clustering_distance_cols=sampleDists,
          col=colors)
 
-name <- filter(gene_name,ID== res@rownames[which.min(res$padj)])[,2] 
+name <- res@rownames[which.min(res$padj)]
 plotCounts(dds, gene=which.min(res$padj), intgroup="type",main = name)
 plotCounts(dds, gene=which.min(res$padj), intgroup="time",main = name)
 
 plotPCA(rld, intgroup=c("time", "type"))
 
-library(rtracklayer) 
-
-gene_name <- import("D:\\ubuntu\\rootfs\\root\\GenomeAnalysis_Xinyao\\GA\\3_annotation\\3.4_functional_annotation\\sel3.gff") %>%
-  as.data.frame() %>%
-  filter(.,ID %in% rownames(data)) %>%
-  .[,c("ID","Name")]
 
 diff_gene_H_F <- as.data.frame(resLFC_H_F) %>%
   filter(padj<0.05) %>%
-  filter(abs(log2FoldChange)>1.5 | abs(log2FoldChange)<2/3)
+  filter(abs(log2FoldChange)>2 | abs(log2FoldChange)<0.5)
 
 out_gene_H_F <- filter(gene_name,ID %in% rownames(diff_gene_H_F)) %>%
   .[,"Name"] %>%
@@ -90,7 +89,7 @@ out_gene_H_F <- filter(gene_name,ID %in% rownames(diff_gene_H_F)) %>%
 
 diff_gene_16_15 <- as.data.frame(resLFC_16_15) %>%
   filter(padj<0.05) %>%
-  filter(abs(log2FoldChange)>1.5 | abs(log2FoldChange)<2/3)
+  filter(abs(log2FoldChange)>2 | abs(log2FoldChange)<0.5)
 
 out_gene_16_15 <- filter(gene_name,ID %in% rownames(diff_gene_16_15)) %>%
   .[,"Name"] %>%
@@ -99,7 +98,7 @@ out_gene_16_15 <- filter(gene_name,ID %in% rownames(diff_gene_16_15)) %>%
 
 diff_gene_17_15 <- as.data.frame(resLFC_17_15) %>%
   filter(padj<0.05) %>%
-  filter(abs(log2FoldChange)>1.5 | abs(log2FoldChange)<2/3)
+  filter(abs(log2FoldChange)>2 | abs(log2FoldChange)<0.5)
 
 out_gene_17_15 <- filter(gene_name,ID %in% rownames(diff_gene_17_15)) %>%
   .[,"Name"] %>%
